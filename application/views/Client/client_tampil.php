@@ -3,10 +3,10 @@
 
 	<!-- Page Heading -->
 	<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-	<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-		For more information about DataTables, please visit the <a target="_blank"
-			href="https://datatables.net">official DataTables documentation</a>.</p>
-
+	<h1 class="h3 mb-4 text-gray-800"><a href="#" data-toggle="modal" data-target="#tambah_data_client"><button type="button" class="btn btn-primary">Tambah Data</button></a></h1>
+	
+	<?php $this->session->flashdata('notif')?>
+	
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
@@ -67,21 +67,15 @@
 								</tfoot>
 								<tbody>
 									<?php
-										foreach($client->result_array() as $i):
-											$id_client = $i['id_client'];
-											$nama_client = $i['nama_client'];
-											$no_hp = $i['no_hp'];
-											$email = $i['email'];
-											$alamat = $i['alamat'];
-											$instansi = $i['instansi'];
+										foreach($client as $i):
 									?>
 
 									<tr role="row" class="odd">
-										<td class="sorting_1"><?php echo $nama_client;?></td>
-										<td><?php echo $no_hp;?></td>
-										<td><?php echo $email;?></td>
-										<td><?php echo $alamat;?></td>
-										<td><?php echo $instansi;?></td>
+										<td class="sorting_1"><?php echo $i->nama_client;?></td>
+										<td><?php echo $i->no_hp;?></td>
+										<td><?php echo $i->email;?></td>
+										<td><?php echo $i->alamat;?></td>
+										<td><?php echo $i->instansi;?></td>
 									</tr>
 									<?php endforeach ;?>
 								</tbody>
@@ -124,4 +118,52 @@
 	</div>
 
 </div>
+
+
+<div class="modal fade" id="tambah_data_client" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Data Client</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<form action="<?php echo site_url('client/tambah')?>" method="post" enctype="multipart/form-data" role="form">
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="control-label" for="nama_client">Nama Client</label>
+						<input type="text" name="nama_client" class="form-control" <?php echo form_error('nama_client') ? 'is-invalid':'' ?>" id="nama_client" placeholder="Nama Client" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="no_hp">No Telephone Client</label>
+						<input type="tel" name="no_hp" class="form-control" <?php echo form_error('no_telp') ? 'is-invalid':'' ?>" id="no_telp" placeholder="No Telephone Client" id="no_telp" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="email">E-mail Client</label>
+						<input type="email" name="email" class="form-control" <?php echo form_error('email') ? 'is-invalid':'' ?>" id="email" placeholder="Email Client" id="email" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="alamat">Alamat Client</label>
+						<input type="text" name="alamat" class="form-control" <?php echo form_error('alamat') ? 'is-invalid':'' ?>" id="alamat" placeholder="Alamat Client" id="alamat" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="instansi">Instansi Client</label>
+						<input type="text" name="instansi" class="form-control" <?php echo form_error('instansi') ? 'is-invalid':'' ?>" id="instansi" placeholder="Instansi Client" id="instansi" required>
+					</div>
+				</div>
+			</form>
+				<div class="modal-footer">
+					<button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#data_table').DataTable();
+    });
+</script>
