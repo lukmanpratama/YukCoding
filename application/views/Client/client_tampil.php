@@ -67,15 +67,14 @@
 								</tfoot>
 								<tbody>
 									<?php
-										foreach($client as $i):
+										foreach($client as $client):
 									?>
-
 									<tr role="row" class="odd">
-										<td class="sorting_1"><?php echo $i->nama_client;?></td>
-										<td><?php echo $i->no_hp;?></td>
-										<td><?php echo $i->email;?></td>
-										<td><?php echo $i->alamat;?></td>
-										<td><?php echo $i->instansi;?></td>
+										<td class="sorting_1"><?php echo $client->nama_client;?></td>
+										<td><?php echo $client->no_hp;?></td>
+										<td><?php echo $client->email;?></td>
+										<td><?php echo $client->alamat;?></td>
+										<td><?php echo $client->instansi;?></td>
 									</tr>
 									<?php endforeach ;?>
 								</tbody>
@@ -153,11 +152,11 @@
 						<input type="text" name="instansi" class="form-control" <?php echo form_error('instansi') ? 'is-invalid':'' ?>" id="instansi" placeholder="Instansi Client" id="instansi" required>
 					</div>
 				</div>
-			</form>
 				<div class="modal-footer">
 					<button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
 					<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>
